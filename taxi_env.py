@@ -22,7 +22,8 @@ class environment():
             
             action = env.action_space.sample() 
             
-            observation, reward, done, info = env.step(action)        
+            observation, reward, done, info = env.step(action)
+            self.state = obervation
             
     
     def end_environment(self):
