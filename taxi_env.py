@@ -1,20 +1,30 @@
-
 import numpy as np
 import gym
 import random
 
         
-env = gym.make('Taxi-v3')
+class environment():
+    
+    def __init__(self):
+        
+        self.env=gym.make('Taxi-v3')
+        self.state=env.rest()
+        self.agent=agent()
+        
+    
+    def start_training(self): 
 
-#initial state
-state = env.reset()
-
-
-total_steps = 1000
-
-for i in range(total_steps): 
-	action = env.action_space.sample()
-	env.step(action)
-	
-
-close.env()
+        done = False 
+        
+        while not done: 
+            
+            env.render()
+            
+            action = env.action_space.sample() 
+            
+            observation, reward, done, info = env.step(action)        
+            
+    
+    def end_environment(self):
+        
+        close.env()
