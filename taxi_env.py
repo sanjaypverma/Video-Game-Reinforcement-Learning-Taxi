@@ -13,6 +13,8 @@ class environment():
         
     
     def start_training(self): 
+        
+        ##if things start to go wrong we may need to do resize of the state
 
         done = False 
         
@@ -22,7 +24,8 @@ class environment():
             
             action = env.action_space.sample() 
             
-            observation, reward, done, info = env.step(action)
+            observation, reward, done, info = env.step(action)        
+            
             self.state = obervation
             
     
