@@ -1,3 +1,12 @@
+from os import path
+import tensorflow as tf
+from tensorflow.keras import layers
+from keras.models import Sequential, load_model
+
+import numpy as np
+import random
+
+
 class agent:
     
     def __init__(self, gamma = 0.9, epsilon = 0.9, epsilon_decay = 0.995, alpha = 0.1):
