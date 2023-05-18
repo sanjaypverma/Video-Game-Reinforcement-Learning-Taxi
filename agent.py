@@ -18,7 +18,7 @@ class agent:
         self.alpha = alpha
         
         self.model = Sequential([
-            layers.Dense(128, input_shape = (2, ), activation = 'relu'),
+            layers.Dense(128, input_shape = (500,500), activation = 'relu'),
             
             layers.Dense(64, activation = 'relu'),
             layer.Dropout(0.2),
