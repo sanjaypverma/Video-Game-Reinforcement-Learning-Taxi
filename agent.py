@@ -18,7 +18,7 @@ class agent:
         self.alpha = alpha
         
         self.model = tf.keras.Sequential([
-            tf.keras.layers.Dense(64, activation='relu', input_shape=(env.observation_space.n,)),
+            tf.keras.layers.Dense(64, activation='relu', input_shape=(state_size,)),
             tf.keras.layers.Dense(64, activation='relu'),
             tf.keras.layers.Dense(env.action_space.n, activation='linear')
         ])
