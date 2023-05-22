@@ -9,7 +9,7 @@ class environment():
 	def __init__(self):
 
 		self.env=gym.make('Taxi-v3')
-		self.state=env.rest()
+		self.state=self.env.reset()
 		self.agent=agent()
 
 		self.state = tf.keras.utils.to_categorical(state,num_classes=env.observation_space.n)
