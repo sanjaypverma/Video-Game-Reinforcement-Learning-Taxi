@@ -28,11 +28,11 @@ class agent:
         
     def next_action(self, state):
         
-        if np.random.rand() <= self.epsilon:
-            return np.random.randint(self.action_size)
+        if np.random.rand() <= epsilon:
+            action = env.action_space.sample()
         else:
-            # If > epsilon, perform a greedy action (use best known action)
-            return self.Qfunction(state)
+            q_values = model.predict(np.expand_dims(state, axis=0))
+            action = np.argmax(q_values)
             
     def train(self, current_state, next_state, reward, done):
         target = reward
@@ -43,9 +43,9 @@ class agent:
         
     
     def Qfunction(self, state):
-        
-        
-        pass
+        q_values = model.predict(np.expand_dims(state, axis=0))
+        next_q_values = model.predict(np.expand_dims(next_state, axis=0))
+        q_values[0][action] = reward + gamma * np.max(next_q_values)
     
     '''
     def update(self, current_state, next_state, reward):
