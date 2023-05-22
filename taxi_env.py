@@ -1,6 +1,7 @@
 import numpy as np
 import gym
 import random
+import tensorflow as tf
 
 from agent import agent
 
@@ -11,33 +12,52 @@ class environment():
 		self.env=gym.make('Taxi-v3')
 		self.state=self.env.reset()
 		self.agent=agent()
+		
+#		env=gym.make('Taxi-v3')
+#		state=env.reset()
 
-		self.state = tf.keras.utils.to_categorical(state,num_classes=env.observation_space.n)
 
+		
+#		print(env,'env')
+#		print(state,'state')
+#		print(type(self.env.reset()),'self.env.reset')
+#		print(int(self.state),'self.state')
+#		print(type(self.state))
+#		print(self.env.observation_space.n,'obs')
+
+		self.state = tf.keras.utils.to_categorical(self.state,num_classes=self.env.observation_space.n)
+		
 
 	def start_training(self): 
 
-		num_episodes = 15
+		total_episodes = 10000
 
-		total_rewards=[]
+		for episodes in range(total_episodes):
 
-		done = False 
-		total_reward=0
+			num_episodes = 15
 		
-		while not done: 
+			total_rewards=[]
 
-			env.render()
-			q_values=model.predict(np.expand_dims(state,axis=0))
-			action = np.argmax(q_values)
+			done = False 
+			total_reward=0
+		
+			while not done: 
+
+#				env.render()
+				q_values=self.agent.model.predict(np.expand_dims(self.state,axis=0))
+				action = np.argmax(q_values)
 
 
 
-			next_state, reward, done, info = env.step(action)
-			next_state = tf.keras.utils.to_categorical(next_state, num_classes=env.obervation_space.n)        
+				next_state, reward, done, info = self.env.step(action)
+				next_state = tf.keras.utils.to_categorical(next_state, num_classes=self.env.observation_space.n)        
 	
-			self.state = next_state
-			total_reward += reward
-		total_rewards.append(total_reward)
+				self.state = next_state
+				total_reward += reward
+		
+			total_rewards.append(total_reward)
+
+			print(f'episode {episodes+1}/{total_episodes}-total reward {total_reward}')
 
 	def average_rewards(self):
 

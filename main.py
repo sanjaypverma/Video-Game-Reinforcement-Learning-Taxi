@@ -6,7 +6,7 @@ from taxi_env import environment
 
 env=environment()
 
-env = train()
+env.start_training()
 
 
 
