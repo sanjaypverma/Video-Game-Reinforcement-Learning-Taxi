@@ -18,9 +18,13 @@ class agent:
         self.alpha = alpha
         
         self.model = tf.keras.Sequential([
-            tf.keras.layers.Dense(64, activation='relu', input_shape=(state_size,)),
-            tf.keras.layers.Dense(64, activation='relu'),
-            tf.keras.layers.Dense(env.action_space.n, activation='linear')
+            tf.keras.layers.Dense(128, activation='relu', input_shape=(state_size,)),
+            
+            tf.keras.layers.Dense(64, activation = 'relu'),
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.Dense(32, activation = 'linear'),
+         
+            tf.keras.layers.Dense(action_size, activation='linear')
         ])
         
         self.optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
