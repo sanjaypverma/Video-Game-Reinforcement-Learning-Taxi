@@ -31,12 +31,14 @@ class environment():
 	def start_training(self): 
 
 		total_episodes = 10000
+		total_rewards=[]
+
 
 		for episodes in range(total_episodes):
 
 			num_episodes = 15
-		
-			total_rewards=[]
+			self.state=self.env.reset()		
+			self.state = tf.keras.utils.to_categorical(self.state,num_classes=self.env.observation_space.n)
 
 			done = False 
 			total_reward=0
