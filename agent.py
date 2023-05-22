@@ -1,6 +1,12 @@
+import numpy as np
+import tensorflow as tf
+import gym
+import random 
+
+
 class agent:
     
-    def __init__(self, gamma = 0.9, epsilon = 0.9, epsilon_decay = 0.995, alpha = 0.1, state_size, action_size):
+    def __init__(self, gamma = 0.9, epsilon = 0.9, epsilon_decay = 0.995, alpha = 0.1, state_size=500, action_size=6):
         
         self.state_size = state_size
         self.action_size = action_size

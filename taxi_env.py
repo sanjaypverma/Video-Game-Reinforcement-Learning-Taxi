@@ -2,16 +2,17 @@ import numpy as np
 import gym
 import random
 
+from agent import agent
 
 class environment():
 
 	def __init__(self):
 
-	self.env=gym.make('Taxi-v3')
-	self.state=env.rest()
-	self.agent=agent()
+		self.env=gym.make('Taxi-v3')
+		self.state=env.rest()
+		self.agent=agent()
 
-	self.state = tf.keras.utils.to_categorical(state,num_classes=env.observation_space.n)
+		self.state = tf.keras.utils.to_categorical(state,num_classes=env.observation_space.n)
 
 
 	def start_training(self): 
