@@ -11,11 +11,14 @@ class agent:
         
         self.alpha = alpha
         
-        model = tf.keras.Sequential([
+        self.model = tf.keras.Sequential([
             tf.keras.layers.Dense(64, activation='relu', input_shape=(env.observation_space.n,)),
             tf.keras.layers.Dense(64, activation='relu'),
             tf.keras.layers.Dense(env.action_space.n, activation='linear')
         ])
+        
+        self.optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
+        self.loss_fn = tf.keras.losses.MeanSquaredError()
         
     def get_model_name(self):
         return 'taxi.h5'
