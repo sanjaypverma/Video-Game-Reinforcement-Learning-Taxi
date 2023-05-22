@@ -11,14 +11,10 @@ class agent:
         
         self.alpha = alpha
         
-        self.model = Sequential([
-            layers.Dense(128, input_shape = self.state_size, activation = 'relu'),
-            
-            layers.Dense(64, activation = 'relu'),
-            layer.Dropout(0.2),
-            layers.Dense(32, activation = 'linear'),
-            
-            layers.Dense(6)
+        model = tf.keras.Sequential([
+            tf.keras.layers.Dense(64, activation='relu', input_shape=(env.observation_space.n,)),
+            tf.keras.layers.Dense(64, activation='relu'),
+            tf.keras.layers.Dense(env.action_space.n, activation='linear')
         ])
         
     def get_model_name(self):
