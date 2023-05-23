@@ -30,7 +30,7 @@ class environment():
 
 	def start_training(self): 
 
-		total_episodes = 10
+		total_episodes = 10000
 		total_rewards=[]
 
 
