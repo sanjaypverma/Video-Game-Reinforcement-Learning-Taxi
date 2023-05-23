@@ -30,7 +30,7 @@ class environment():
 
 	def start_training(self): 
 
-		total_episodes = 10000
+		total_episodes = 10
 		total_rewards=[]
 
 
@@ -46,7 +46,7 @@ class environment():
 			while not done: 
 
 #				env.render()
-				q_values=self.agent.model.predict(np.expand_dims(self.state,axis=0))
+				q_values=self.agent.model.predict(np.expand_dims(self.state,axis=0), verbose=0)
 				action = np.argmax(q_values)
 
 
@@ -60,6 +60,11 @@ class environment():
 			total_rewards.append(total_reward)
 
 			print(f'episode {episodes+1}/{total_episodes}-total reward {total_reward}')
+		
+			##save model
+		self.agent.save_model()
+       		#print("Model saved successfully.")
+
 
 	def average_rewards(self):
 
@@ -68,6 +73,9 @@ class environment():
 		print(f"average reward over {num_episodes} evaluation episodes")
 
 
-	def end_environment(self):
+#	def end_environment(self):
 
-		close.env()
+#		close.env()
+
+
+
