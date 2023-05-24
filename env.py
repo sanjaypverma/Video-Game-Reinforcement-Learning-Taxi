@@ -52,7 +52,7 @@ class environment():
 		
 	##save model
 
-			if (episodes + 1) % 10 == 0:
+			if (episodes + 1) % 100 == 0:
 				#agent=agent()
 				self.agent.save_model()
 				print("Model saved successfully.")
