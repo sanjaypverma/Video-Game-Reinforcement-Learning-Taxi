@@ -35,9 +35,10 @@ class environment():
 				
 				action = self.agent.next_action(self.state)
 
-				next_state, reward, done, info = self.env.step(action)
-				next_state = tf.keras.utils.to_categorical(next_state, num_classes=self.env.observation_space.n)        
-	
+				next_state, reward, done, _ = self.env.step(action)
+				next_state = tf.keras.utils.to_categorical(next_state, num_classes=self.env.observation_space.n)
+                
+                self.agent.update_model(self.state, action, reward, next_state, done)
 				self.state = next_state
 				total_reward += reward
 		
