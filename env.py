@@ -69,9 +69,10 @@ class environment():
 		print(f"average reward over {num_episodes} evaluation episodes")
 
 
-#	def end_environment(self):
+	# MAKE SURE TO CALL THIS AFTER TRAINING IS DONE!
+	def end_environment(self):
 
-#		close.env()
+		self.env.close()
 
 
 
