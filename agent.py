@@ -52,13 +52,6 @@ class agent:
 		    action = np.argmax(q_values)
 
 		return action
-            
-	def train(self, current_state, next_state, reward, done):
-		target = reward
-        
-		if not done:
-			target = (reward + self.gamma * Qfunction(next_state))
-        
         
     
 	def update_model(self, state, action, reward, next_state, done):
