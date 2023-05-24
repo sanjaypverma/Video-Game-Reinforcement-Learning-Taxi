@@ -11,10 +11,9 @@ class environment():
 
 		self.env=gym.make('Taxi-v3')
 		self.state=self.env.reset()
-		self.agent=agent()
-		self.path=path	
 		self.state = tf.keras.utils.to_categorical(self.state,num_classes=self.env.observation_space.n)
-		
+		self.agent=agent()
+		self.path=path
 
 	def start_training(self): 
 
