@@ -2,11 +2,12 @@ import numpy as np
 import tensorflow as tf
 import gym
 import random 
-
+from inputs import path
 
 class agent:
-	def __init__(self, gamma = 0.9, epsilon = 0.9, epsilon_decay = 0.995, alpha = 0.1, state_size=500, action_size=6):
+	def __init__(self,  gamma = 0.9, epsilon = 0.9, epsilon_decay = 0.995, alpha = 0.1, state_size=500, action_size=6):
      
+
 		self.state_size = state_size
 		self.action_size = action_size
        
@@ -30,12 +31,15 @@ class agent:
 
 
         
-#    def get_model_name(self):
-#        return 'taxi.h5'
-    
+#	def stored_model_path(self):
+#		path = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_model'	
+	 
 	def save_model(self):
-  #      self.model.save(self.get_model_name())
-		self.model.save('/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_model')
+		self.model.save(path)
+
+	def load_model(self): 
+		self.model = tf.keras.models.load_model(path)
+
 	     
 	def next_action(self, state):
         
