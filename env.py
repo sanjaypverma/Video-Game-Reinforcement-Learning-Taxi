@@ -17,13 +17,12 @@ class environment():
 
 	def start_training(self): 
 
-		total_episodes = 10000
-		total_rewards=[]
+		num_episodes = 10000
+		episode_rewards=[]
 
 
-		for episodes in range(total_episodes):
+		for episodes in range(num_episodes):
 
-			num_episodes = 15
 			self.state=self.env.reset()		
 			self.state = tf.keras.utils.to_categorical(self.state,num_classes=self.env.observation_space.n)
 
@@ -33,10 +32,8 @@ class environment():
 			while not done: 
 
 #				env.render()
-				q_values=self.agent.model.predict(np.expand_dims(self.state,axis=0), verbose=0)
-				action = np.argmax(q_values)
-
-
+				
+				action = self.agent.next_action(self.state)
 
 				next_state, reward, done, info = self.env.step(action)
 				next_state = tf.keras.utils.to_categorical(next_state, num_classes=self.env.observation_space.n)        
