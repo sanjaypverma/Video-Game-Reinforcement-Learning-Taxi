@@ -33,9 +33,6 @@ class agent:
 
 
         
-#	def stored_model_path(self):
-#		path = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_model'	
-	 
 	def save_model(self):
 		self.model.save(path)
 

@@ -31,14 +31,12 @@ class environment():
 		
 			while not done: 
 
-#				env.render()
-				
 				action = self.agent.next_action(self.state)
 
 				next_state, reward, done, _ = self.env.step(action)
 				next_state = tf.keras.utils.to_categorical(next_state, num_classes=self.env.observation_space.n)
                 
-                self.agent.update_model(self.state, action, reward, next_state, done)
+                		self.agent.update_model(self.state, action, reward, next_state, done)
 				self.state = next_state
 				total_reward += reward
 		
@@ -47,19 +45,10 @@ class environment():
 			print(f'Episode {episode+1}/{num_episodes}-Total reward {total_reward}')
 
 		
-	##save model
-
 			if (episode + 1) % 100 == 0:
-				#agent=agent()
 				self.agent.save_model()
 				print("Model saved successfully.")
 
-#		self.agent.save_model()
-       		#print("Model saved successfully.")
-
-
-	def continue_training(self):
-		#agent=agent()
 		self.agent.load_model()
 
 	def average_rewards(self):
