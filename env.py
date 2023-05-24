@@ -21,7 +21,7 @@ class environment():
 		episode_rewards=[]
 
 
-		for episodes in range(num_episodes):
+		for episode in range(num_episodes):
 
 			self.state=self.env.reset()		
 			self.state = tf.keras.utils.to_categorical(self.state,num_classes=self.env.observation_space.n)
@@ -42,14 +42,14 @@ class environment():
 				self.state = next_state
 				total_reward += reward
 		
-			total_rewards.append(total_reward)
+			episode_rewards.append(total_reward)
 
-			print(f'episode {episodes+1}/{total_episodes}-total reward {total_reward}')
+			print(f'Episode {episode+1}/{num_episodes}-Total reward {total_reward}')
 
 		
 	##save model
 
-			if (episodes + 1) % 100 == 0:
+			if (episode + 1) % 100 == 0:
 				#agent=agent()
 				self.agent.save_model()
 				print("Model saved successfully.")
