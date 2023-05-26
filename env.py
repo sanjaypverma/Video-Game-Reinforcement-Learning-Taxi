@@ -14,11 +14,12 @@ class environment():
 		self.state = tf.keras.utils.to_categorical(self.state,num_classes=self.env.observation_space.n)
 		self.agent=agent()
 		self.path=path
+		self.episode_rewards=[]
 
 	def start_training(self): 
 
 		num_episodes = 10000
-		episode_rewards=[]
+
 
 
 		for episode in range(num_episodes):
@@ -40,18 +41,21 @@ class environment():
 				self.state = next_state
 				total_reward += reward
 
-
-			episode_rewards.append(total_reward)
-
+	
+			self.episode_rewards.append(total_reward)   
 			print(f'Episode {episode+1}/{num_episodes}-Total reward {total_reward}')
-			
+   			
+			avg_reward=np.mean(self.episode_rewards)
+			print(f"average reward over {len(self.episode_rewards)} evaluation episodes is {avg_reward} ")
+
 			if (episode + 1) % 100 == 0:
 				self.agent.save_model()
 				print("Model saved successfully.")
 			
 		self.agent.save_complete_model()
 		print('Full model saved successfully')
-		
+
+	
 	def continue_training(self):
 		check_path = Path(path)
 		
@@ -66,11 +70,6 @@ class environment():
 		continue_train = environmnet()
 		continue_train.start_training()
 
-	def average_rewards(self):
-
-		avg_reward=sum(total_rewards)/num_episodes
-
-		print(f"average reward over {num_episodes} evaluation episodes")
 
 
 	# MAKE SURE TO CALL THIS AFTER TRAINING IS DONE!
