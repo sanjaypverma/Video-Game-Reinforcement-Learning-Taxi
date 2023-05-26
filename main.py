@@ -8,6 +8,6 @@ from tensorflow import keras
 
 
 env=environment()
-env.start_training()
-
+#env.start_training()
+env.continue_training()
 
