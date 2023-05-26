@@ -15,6 +15,7 @@ class environment():
 		self.agent=agent()
 		self.path=path
 		self.episode_rewards=[]
+        self.total_actions = []
 
 	def start_training(self): 
 
@@ -29,11 +30,11 @@ class environment():
 
 			done = False 
 			total_reward=0
-		
+            episode_actions = []
 			while not done: 
 
 				action = self.agent.next_action(self.state)
-
+                episode_actions.append(action)
 				next_state, reward, done, _ = self.env.step(action)
 				next_state = tf.keras.utils.to_categorical(next_state, num_classes=self.env.observation_space.n)
                 
@@ -45,6 +46,8 @@ class environment():
 			self.episode_rewards.append(total_reward)   
 			print(f'Episode {episode+1}/{num_episodes}-Total reward {total_reward}')
    			
+            self.total_actions.append(episode_actions)
+            
 			avg_reward=np.mean(self.episode_rewards)
 			print(f"average reward over {len(self.episode_rewards)} evaluation episodes is {avg_reward} ")
 
