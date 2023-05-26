@@ -39,13 +39,15 @@ class agent:
 	def load_model(self): 
 		self.model = tf.keras.models.load_model(path)
 
+	def save_complete_model(self): 
+		self.model.save(complete_model)
 	     
 	def next_action(self, state):
 		
 		if np.random.rand() <= self.epsilon:
 		    action = np.random.randint(self.action_size)
 		else:
-		    q_values = self.model.predict(np.expand_dims(state, axis = 0))
+		    q_values = self.model.predict(np.expand_dims(state, axis = 0), verbose=0)
 		    action = np.argmax(q_values)
 
 		return action
@@ -53,8 +55,8 @@ class agent:
     
 	def update_model(self, state, action, reward, next_state, done):
         
-		q_values = self.model.predict(np.expand_dims(state, axis = 0))
-		next_q_values = self.model.predict(np.expand_dims(next_state, axis = 0))
+		q_values = self.model.predict(np.expand_dims(state, axis = 0), verbose=0)
+		next_q_values = self.model.predict(np.expand_dims(next_state, axis = 0),verbose=0)
 		q_values[0][action] = reward + self.gamma * np.max(next_q_values)
 
 		with tf.GradientTape() as tape:
