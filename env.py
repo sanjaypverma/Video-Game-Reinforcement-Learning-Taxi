@@ -21,8 +21,6 @@ class environment():
 
 		num_episodes = 10000
 
-
-
 		for episode in range(num_episodes):
 
 			self.state=self.env.reset()		
