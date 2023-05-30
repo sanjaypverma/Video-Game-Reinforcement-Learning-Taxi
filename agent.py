@@ -12,7 +12,6 @@ class agent:
 		self.gamma = gamma
 		self.epsilon = epsilon
 		self.epsilon_decay = epsilon_decay
-
 		self.alpha = alpha
 
 		self.model = tf.keras.Sequential([
