@@ -1,20 +1,21 @@
 import numpy as np
 import tensorflow as tf
-from inputs import path
+
 
 class agent:
 	
-	def __init__(self,  gamma = 0.9, epsilon = 0.9, epsilon_decay = 0.995, alpha = 0.01, state_size=500, action_size=6):
+    def __init__(self,  gamma = 0.9, epsilon = 0.9, epsilon_decay = 0.995, alpha = 0.01, state_size=500, action_size=6):
 		
-		self.state_size = state_size
-		self.action_size = action_size
+        self.state_size = state_size
+        self.action_size = action_size
 
-		self.gamma = gamma
-		self.epsilon = epsilon
-		self.epsilon_decay = epsilon_decay
-		self.alpha = alpha
+        self.gamma = gamma
+        self.epsilon = epsilon
+        self.epsilon_decay = epsilon_decay
 
-		self.model = tf.keras.Sequential([
+        self.alpha = alpha
+
+        self.model = tf.keras.Sequential([
 		    tf.keras.layers.Dense(128, activation='relu', input_shape=(self.state_size,)),
 
 		    tf.keras.layers.Dense(64, activation = 'relu'),
@@ -24,46 +25,46 @@ class agent:
 		    tf.keras.layers.Dense(self.action_size, activation = 'linear')
 		    ])
 
-		self.optimizer = tf.keras.optimizers.Adam(learning_rate = self.alpha)
-		self.loss_fn = tf.keras.losses.MeanSquaredError()
-		self.model.compile(optimizer = self.optimizer,
+        self.optimizer = tf.keras.optimizers.Adam(learning_rate = self.alpha)
+        self.loss_fn = tf.keras.losses.MeanSquaredError()
+        self.model.compile(optimizer = self.optimizer,
 				   loss = self.loss_fn,
 				   metrics = ['accuracy'])
 
 
         
-	def save_model(self):
-		self.model.save(path)
-
-	def load_model(self): 
-		self.model = tf.keras.models.load_model(path)
-
-	def save_complete_model(self): 
-		self.model.save(complete_model)
-	     
-	def next_action(self, state):
-		
-		if np.random.rand() <= self.epsilon:
-		    action = np.random.randint(self.action_size)
-		else:
-		    q_values = self.model.predict(np.expand_dims(state, axis = 0), verbose=0)
-		    action = np.argmax(q_values)
-
-		return action
-        
+    def save_model(self):
+        self.model.save(path,overwrite=False)
     
-	def update_model(self, state, action, reward, next_state, done):
+    def load(self): 
+	    self.model = tf.keras.models.load_model(path)
+
+    def save_complete_model(self): 
+        self.model.save(complete_model,overwrite=True)
+	     
+    def next_action(self, state):
+		
+        if np.random.rand() <= self.epsilon:
+            action = np.random.randint(self.action_size)
+        else:
+            q_values = self.model.predict(np.expand_dims(state, axis = 0), verbose=0)
+            action = np.argmax(q_values)
+
+        return action
+
+    def update_model(self, state, action, reward, next_state, done):
         
-		q_values = self.model.predict(np.expand_dims(state, axis = 0), verbose=0)
-		next_q_values = self.model.predict(np.expand_dims(next_state, axis = 0),verbose=0)
-		q_values[0][action] = reward + self.gamma * np.max(next_q_values)
+        q_values = self.model.predict(np.expand_dims(state, axis = 0), verbose=0)
+        next_q_values = self.model.predict(np.expand_dims(next_state, axis = 0),verbose=0)
+        q_values[0][action] = reward + self.gamma * np.max(next_q_values)
 
-		with tf.GradientTape() as tape:
-		    q_values_pred = self.model(np.expand_dims(state, axis = 0))
-		    loss_value = self.loss_fn(q_values_pred, q_values)
+        with tf.GradientTape() as tape:
+            q_values_pred = self.model(np.expand_dims(state, axis = 0))
 
-		grads = tape.gradient(loss_value, self.model.trainable_variables)
-		self.optimizer.apply_gradients(zip(grads, self.model.trainable_variables))
+            loss_value= self.loss_fn(q_values_pred, q_values)
 
-		if done:
-		    self.epsilon *= self.epsilon_decay
+        grads = tape.gradient(loss_value, self.model.trainable_variables)
+        self.optimizer.apply_gradients(zip(grads, self.model.trainable_variables))
+
+        if done:
+            self.epsilon *= self.epsilon_decay
