@@ -2,8 +2,8 @@ import numpy as np
 import gym
 import random
 import tensorflow as tf
-from agent import agent
-from inputs import path 
+from pathlib import Path
+
 
 class environment():
 
@@ -15,11 +15,12 @@ class environment():
 		self.agent=agent()
 		self.path=path
 		self.episode_rewards=[]
-        	self.total_actions = []
+		self.total_actions = []
 
 	def start_training(self): 
 
 		num_episodes = 10000
+
 
 		for episode in range(num_episodes):
 
@@ -28,11 +29,10 @@ class environment():
 
 			done = False 
 			total_reward=0
-            		episode_actions = []
+			episode_actions = []
 			while not done: 
-
 				action = self.agent.next_action(self.state)
-                		episode_actions.append(action)
+				episode_actions.append(action)
 				next_state, reward, done, _ = self.env.step(action)
 				next_state = tf.keras.utils.to_categorical(next_state, num_classes=self.env.observation_space.n)
                 
@@ -40,43 +40,47 @@ class environment():
 				self.state = next_state
 				total_reward += reward
 
-	
-			self.episode_rewards.append(total_reward)   
+
+			self.episode_rewards.append(total_reward)
+			self.total_actions.append(episode_actions)   
+   
 			print(f'Episode {episode+1}/{num_episodes}-Total reward {total_reward}')
-   			
-            		self.total_actions.append(episode_actions)
-            
+   
 			avg_reward=np.mean(self.episode_rewards)
 			print(f"average reward over {len(self.episode_rewards)} evaluation episodes is {avg_reward} ")
 
-			if (episode + 1) % 100 == 0:
+			if (episode + 1) % 25 == 0:
 				self.agent.save_model()
 				print("Model saved successfully.")
 			
 		self.agent.save_complete_model()
 		print('Full model saved successfully')
+		
 
-	
 	def continue_training(self):
-		check_path = Path(path)
+		check_path = Path(self.path)
 		
 		if check_path.exists():
-			self.agent.load_model()
 			print('checkpoint found. loading existing model and picking up where we left off')
-			loaded_model=tf.keras.models.save_model(self.agent.model,path,overwrite=False)
+			self.agent.load()
+			self.start_training()
+			
+			# loaded_model=tf.keras.models.save_model(self.agent.model,path,overwrite=False)
+			
 
 		else: 
-			print('No existing checkpoint found. Starting training from beginnign.')
+			print('No existing checkpoint found. Starting training from begining.')
 	
-			continue_train = environmnet()
+			continue_train = environment()
 			continue_train.start_training()
+   
 
+   
 
 
 	# MAKE SURE TO CALL THIS AFTER TRAINING IS DONE!
 	def end_environment(self):
 
 		self.env.close()
-
 
 
