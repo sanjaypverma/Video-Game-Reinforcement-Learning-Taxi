@@ -60,6 +60,14 @@ class MergedEnvironment:
 	def vectorize_state(self, state):
 		return tf.keras.utils.to_categorical(state, num_classes=self.state_size).reshape(1, -1)
 
+    
+class plotting:
+	def __init__(self):
+		self.total_actions = []
+		self.plotting_rewards = []
+plotinst = plotting()    
+    
+    
 def main():
     # Create Taxi environment
 	env_name = 'Taxi-v3'
@@ -78,6 +86,7 @@ def main():
     # Training
 	for episode in range(num_episodes):
 		total_reward = 0
+		episode_actions = []
 		print("Episode: ", episode + 1)
 
 		state = env.reset()
@@ -86,7 +95,7 @@ def main():
 
 		for s in range(max_steps):
 			action = agent.act(state)
-
+			episode_actions.append(action)
 			next_state, reward, done, info = env.step(action)
 			next_state = env.vectorize_state(next_state)
 
@@ -105,6 +114,9 @@ def main():
         
 		print(f"Total reward for Episode {episode + 1}: {total_reward}")
 
+		plotinst.plotting_rewards.append(total_reward)
+		plotinst.total_actions.append(episode_actions)
+        
 		agent.epsilon *= np.exp(-decay_rate * episode)
 
 	print(f"Training completed over {num_episodes} episodes")
