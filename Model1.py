@@ -21,23 +21,23 @@ class MergedAgent:
 		model.add(Dense(16, activation='relu'))
 		model.add(Dense(self.action_size, activation='linear'))
 		model.compile(loss='mse', optimizer='adam')
-			return model
+		return model
 
 	def act(self, state):
 		if np.random.rand() <= self.epsilon:
-		return random.randrange(self.action_size)
+			return random.randrange(self.action_size)
 		q_values = self.model.predict(state, verbose=0)
-			return np.argmax(q_values[0])
+		return np.argmax(q_values[0])
 
 	def train(self, state, action, reward, next_state, done):
 		target = reward
 		if not done:
-		target = (reward + self.discount_rate * np.amax(self.model.predict(next_state, verbose=0)[0]))
-		target_f = self.model.predict(state, verbose=0)
-		target_f[0][action] = target
-		self.model.fit(state, target_f, epochs=1, verbose=0)
+			target = (reward + self.discount_rate * np.amax(self.model.predict(next_state, verbose=0)[0]))
+			target_f = self.model.predict(state, verbose=0)
+			target_f[0][action] = target
+			self.model.fit(state, target_f, epochs=1, verbose=0)
 		if done:
-		self.epsilon *= np.exp(-self.epsilon_decay)
+			self.epsilon *= np.exp(-self.epsilon_decay)
 
 class MergedEnvironment:
 	def __init__(self, env_name):
@@ -75,12 +75,12 @@ def main():
 
     # Training
 	for episode in range(num_episodes):
-	total_reward = 0
-	print("Episode: ", episode + 1)
+		total_reward = 0
+		print("Episode: ", episode + 1)
 
-	state = env.reset()
-	state = env.vectorize_state(state)
-	done = False
+		state = env.reset()
+		state = env.vectorize_state(state)
+		done = False
 
 		for s in range(max_steps):
 			action = agent.act(state)
