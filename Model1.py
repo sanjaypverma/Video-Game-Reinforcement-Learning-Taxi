@@ -67,6 +67,8 @@ def main():
 
     # Initialize agent
 	agent = MergedAgent(env.state_size, env.action_size)
+	
+	model = agent.model
 
     # Hyperparameters
 	num_episodes = 50
