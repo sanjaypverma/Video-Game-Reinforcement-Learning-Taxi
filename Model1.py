@@ -71,7 +71,7 @@ def main():
 	model = agent.model
 
     # Hyperparameters
-	num_episodes = 50
+	num_episodes = 75
 	max_steps = 99
 	decay_rate = 0.005
 
@@ -103,9 +103,9 @@ def main():
 #			tf.keras.models.save_model(model,filepath='/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_progress')
 #			print("Model saved successfully.")	
         
-	print(f"Total reward for Episode {episode + 1}: {total_reward}")
+		print(f"Total reward for Episode {episode + 1}: {total_reward}")
 
-	agent.epsilon *= np.exp(-decay_rate * episode)
+		agent.epsilon *= np.exp(-decay_rate * episode)
 
 	print(f"Training completed over {num_episodes} episodes")
 	tf.keras.models.save_model(model,filepath='/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_complete_model')	
