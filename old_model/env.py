@@ -25,7 +25,7 @@ class environment():
 		
 		check_path = Path(self.path)
 
-		if check_path.exists():
+		if check_path.exists() and check_path.stat().st_size>0:
 			print('checkpoint found. loading existing model and picking up where we left off')
 			self.agent.load(self.path)
 			self.continue_training(from_load=True)

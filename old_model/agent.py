@@ -29,7 +29,7 @@ class agent:
 
 
 	def model_save(self,path):
-		tf.keras.models.save_model(self.model,path,overwrite=False)
+		tf.keras.models.save_model(self.model,path)
     
 	def load(self,path): 
 		self.model=tf.keras.models.load_model(path)
