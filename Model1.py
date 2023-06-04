@@ -99,9 +99,9 @@ def main():
 			if done:
 				break
 	
-		if (episode + 1) % 2 == 0:
-			tf.keras.models.save_model(model,filepath='/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_progress')
-			print("Model saved successfully.")	
+#		if (episode + 1) % 2 == 0:
+#			tf.keras.models.save_model(model,filepath='/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_progress')
+#			print("Model saved successfully.")	
         
 	print(f"Total reward for Episode {episode + 1}: {total_reward}")
 
