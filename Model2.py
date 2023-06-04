@@ -125,3 +125,6 @@ for s in range(max_steps):
         break
 
 env.close()
+
+if __name__ == 'main()':
+    main()
