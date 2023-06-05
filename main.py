@@ -1,5 +1,23 @@
 #Main 
 
+import numpy as np
+import gym
+import random
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import pandas as pd
+import seaborn as sns
+from pathlib import Path
+
+from Agent import Agent
+from Environment import Environment 
+from Plotting import Plotting 
+
+
+
 def main():
     # Create Taxi environment
     env_name = 'Taxi-v3'
