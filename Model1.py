@@ -273,7 +273,7 @@ def main():
         next_state, reward, done, info = env.step(action)
         rewards += reward
         env.render()
-        print(f"Score: {rewards}")
+        #print(f"Score: {rewards}")
         state = env.vectorize_state(next_state)
 
         if done:
