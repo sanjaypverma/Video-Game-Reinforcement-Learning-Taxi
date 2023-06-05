@@ -1,5 +1,6 @@
 #Agent Class
 
+<<<<<<< HEAD
 import numpy as np
 import gym
 import random
@@ -14,13 +15,19 @@ from pathlib import Path
 
 from inputs import progress_model, complete_model
 
+=======
+>>>>>>> 3ce0f35626850fc7f333ff79d1e1403a1c548c7c
 class Agent:
     def __init__(self, state_size, action_size):
         self.state_size = state_size
         self.action_size = action_size
         self.epsilon = 1.0
         self.epsilon_decay = 0.005
+<<<<<<< HEAD
         self.learning_rate = 0.95
+=======
+        self.learning_rate = 0.9
+>>>>>>> 3ce0f35626850fc7f333ff79d1e1403a1c548c7c
         self.discount_rate = 0.8
         self.model = self._build_model()
 
@@ -34,6 +41,10 @@ class Agent:
 
     
     def saved(self,ccomplete_model):
+<<<<<<< HEAD
+=======
+#             tf.keras.models.save_model(model,filepath=complete_model)
+>>>>>>> 3ce0f35626850fc7f333ff79d1e1403a1c548c7c
             self.model.save(complete_model)
             print('Full model saved successfully')
         
