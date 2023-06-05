@@ -1,3 +1,7 @@
+#/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
 
 
 #Imports 
@@ -14,6 +18,7 @@ import pandas as pd
 import seaborn as sns
 
 from pathlib import Path
+import time
 
 
 
@@ -21,11 +26,11 @@ from pathlib import Path
 #Path files 
 ###CHANGE THESE SO THEY ARE TRUE TO UR COMPUTER####
 
-#complete_model = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_complete_model'
-#progress_model = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_progress'
+complete_model = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_complete_model'
+progress_model = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/save_progress'
 
-#graph_data = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/output_data/graph_data.csv'
-#save_animation = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/output_data/trained_agent_animation.mp4'
+graph_data = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/output_data/graph_data.csv'
+save_animation = '/Users/ilianamarrujo/computing16B/project/PIC16BProject/output_data/trained_agent_animation.mp4'
 
 
 
@@ -37,8 +42,8 @@ class Agent:
         self.state_size = state_size
         self.action_size = action_size
         self.epsilon = 1.0
-        self.epsilon_decay = 0.005
-        self.learning_rate = 0.9
+        self.epsilon_decay = 0.0001
+        self.learning_rate = 0.7
         self.discount_rate = 0.8
         self.model = self._build_model()
 
@@ -150,9 +155,9 @@ def main():
     
 
     # Hyperparameters
-    num_episodes = 3
-    max_steps = 99
-    decay_rate = 0.005
+    num_episodes = 150
+    max_steps = 1000
+    decay_rate = 0.0001
 
     # Training
     for episode in range(num_episodes):
@@ -236,6 +241,7 @@ def main():
     
     input("Press Enter to watch the trained agent...")
 
+    time.sleep(10)
 
     # Watch trained agent
 #     state = env.reset()
@@ -280,22 +286,54 @@ def main():
             break
 
 
-    def visualization(ss):
-        #clear previous screenshot 
-        plt.clf()
-        env.render()
+#     def visualization(ss):
+#         #clear previous screenshot 
+#         plt.clf()
+#         env.render()
 
-        state = agent_positions[ss]
-        agent_position = np.unravel_index(state.argmax(), state.shape)
-        plt.scatter(agent_position[1], agent_position[0], color='red', s=100)
+#         state = positionPlay[ss]
+#         agent_position = np.unravel_index(state.argmax(), state.shape)
+#         plt.scatter(agent_position[1], agent_position[0], color='red', s=100)
 
-        plt.title(f"Step: {ss + 1}")
+#         plt.title(f"Step: {ss + 1}")
 
-    fig = plt.figure()
-    game_animation = animation.FuncAnimation(fig, visualization, frame_num=len(agent_position), interval=500, repeat=False)
-    game_animation.save(save_animation, writer='ffmpeg')
+#     fig = plt.figure()
+#     game_animation = animation.FuncAnimation(fig, visualization, frame_num=len(positionPlay), interval=500, repeat=False)
+#     game_animation.save(save_animation, writer='ffmpeg')
     
-    plt.show()
+#     plt.show()
+
+
+
+#     state = env.reset()
+#     done = False
+#     rewards = 0
+
+#     # this loop is for the animation so you can visually see
+#     # how the agent is performing.
+#     for s in range(max_steps):
+
+#         print(f"TRAINED AGENT")
+#         print("Step {}".format(s+1))
+
+#         # exploit a known action, we'll only used the
+#         # exploitation since the agent is aleady trained
+#         action = agent.act(state)
+#         # take the action in the environment
+#         new_state, reward, done, info = env.step(action)
+#         # update reward
+#         rewards += reward
+#         # update the screenshot of the environment
+#         env.render()
+
+#         print(f"score: {rewards}")
+#         state = new_state
+
+#         if done == True:
+#             break
+            
+#         if done:
+#             break
     env.close()
 
 
@@ -303,6 +341,13 @@ if __name__ == "__main__":
     main()
 
 
+
+
+
+
+
+
+# In[ ]:
 
 
 
