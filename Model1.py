@@ -143,7 +143,7 @@ def main():
     # Initialize agent
     agent = Agent(env.state_size, env.action_size)
 
-    model = agent.model
+    
     
     agent.load(complete_model)
             
