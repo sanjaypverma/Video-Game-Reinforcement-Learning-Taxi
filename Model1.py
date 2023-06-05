@@ -287,9 +287,9 @@ def main():
 
         state = positionPlay[ss]
         agent_position = np.unravel_index(state.argmax(), state.shape)
-        plt.scatter(agent_position[1], agent_position[0], color='red', s=100)
+        #plt.scatter(agent_position[1], agent_position[0], color='red', s=100)
 
-        plt.title(f"Step: {ss + 1}")
+        #plt.title(f"Step: {ss + 1}")
 
     fig = plt.figure()
     game_animation = animation.FuncAnimation(fig, visualization, frames=len(positionPlay), interval=500, repeat=False)
