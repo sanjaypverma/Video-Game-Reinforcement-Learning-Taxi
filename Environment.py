@@ -1,6 +1,7 @@
 #Environment Class
 
 
+
 import numpy as np
 import gym
 import random
@@ -25,6 +26,15 @@ class Environment:
         return self.env.reset()
 
     def step(self, action):
+
+ #       next_state, reward, done, info = self.env.step(action)	
+
+#        if reward is None:
+#            reward = 0
+
+#        if reward == -1:
+#            reward = -10
+#        return next_state, reward, done, info
         return self.env.step(action)
 
     def render(self):

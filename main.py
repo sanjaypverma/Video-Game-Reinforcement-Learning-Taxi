@@ -158,29 +158,13 @@ def main():
         next_state, reward, done, info = env.step(action)
         rewards += reward
         env.render()
-        print(f"Score: {rewards}")
+        #print(f"Score: {rewards}")
         state = env.vectorize_state(next_state)
 
         if done:
             break
 
 
-    def visualization(ss):
-        #clear previous screenshot 
-        plt.clf()
-        env.render()
-
-        state = agent_positions[ss]
-        agent_position = np.unravel_index(state.argmax(), state.shape)
-        plt.scatter(agent_position[1], agent_position[0], color='red', s=100)
-
-#        plt.title(f"Step: {ss + 1}")
-
-    fig = plt.figure()
-    game_animation = animation.FuncAnimation(fig, visualization, frame_num=len(agent_position), interval=500, repeat=False)
-    game_animation.save(save_animation, writer='ffmpeg')
-    
-    plt.show()
     env.close()
 
 

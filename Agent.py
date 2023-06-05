@@ -20,7 +20,7 @@ class Agent:
         self.action_size = action_size
         self.epsilon = 1.0
         self.epsilon_decay = 0.005
-        self.learning_rate = 0.9
+        self.learning_rate = 0.95
         self.discount_rate = 0.8
         self.model = self._build_model()
 
