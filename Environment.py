@@ -1,5 +1,11 @@
 #Environment Class
 
+import numpy as np
+import gym
+import random
+import tensorflow as tf
+from Agent import Agent
+
 class Environment:
     def __init__(self, env_name):
         
