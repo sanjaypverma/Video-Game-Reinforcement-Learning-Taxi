@@ -292,7 +292,7 @@ def main():
         plt.title(f"Step: {ss + 1}")
 
     fig = plt.figure()
-    game_animation = animation.FuncAnimation(fig, visualization, frame_num=len(positionPlay), interval=500, repeat=False)
+    game_animation = animation.FuncAnimation(fig, visualization, frames=len(positionPlay), interval=500, repeat=False)
     game_animation.save(save_animation, writer='ffmpeg')
     
     plt.show()
