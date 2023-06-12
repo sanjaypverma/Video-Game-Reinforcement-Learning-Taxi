@@ -57,7 +57,6 @@ class Agent:
 
     
     def saved(self,ccomplete_model):
-#             tf.keras.models.save_model(model,filepath=complete_model)
             self.model.save(complete_model)
             print('Full model saved successfully')
         
