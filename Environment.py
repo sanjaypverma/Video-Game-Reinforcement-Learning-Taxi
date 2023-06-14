@@ -26,7 +26,6 @@ class Environment:
         return self.env.reset()
 
     def step(self, action):
-
         return self.env.step(action)
 
     def render(self):
