@@ -19,9 +19,8 @@ class Agent:
         self.state_size = state_size
         self.action_size = action_size
         self.epsilon = 1.0
-        self.epsilon_decay = 0.005
-        self.learning_rate = 0.95
-        self.learning_rate = 0.9
+        self.epsilon_decay = 0.0001
+        self.learning_rate = 0.7
         self.discount_rate = 0.8
         self.model = self._build_model()
 
@@ -73,3 +72,4 @@ class Agent:
             
         if done:
             self.epsilon *= np.exp(-self.epsilon_decay)
+
