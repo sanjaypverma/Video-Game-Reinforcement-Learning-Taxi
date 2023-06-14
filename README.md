@@ -4,7 +4,7 @@ The goal of this project was to teach a computer to play a video game through re
 
 Initially, we wanted to solve a level of Geometry Dash but as a result of long training times we pivoted to a simpler and more well-documented game called "Taxi" that was available through the GYM API. Our new goal was to train a neural network to work through this game as efficiently as possible.
 
-### If you would like to run this program as easily as possible, simply run the code from Model1.py :) Otherwise, you can use the agent, environment, and main classes separately.
+# If you would like to run this program as easily as possible, simply run the code from TaxiModel.py. Otherwise, download the agent, environment, inputs, plotting, and main classes into one folder and run the main script. If you would like to make use of the load/save feature, please make sure to change the filepaths in the inputs.py files to the corresponding filepaths you'd like to save to on your own machine.
 
 ## Agent:
 
