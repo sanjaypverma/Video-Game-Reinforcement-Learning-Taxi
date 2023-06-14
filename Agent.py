@@ -1,6 +1,5 @@
 #Agent Class
 
-<<<<<<< HEAD
 import numpy as np
 import gym
 import random
