@@ -4,7 +4,7 @@ The goal of this project was to teach a computer to play a video game through re
 
 Initially, we wanted to solve a level of Geometry Dash but as a result of long training times we pivoted to a simpler and more well-documented game called "Taxi" that was available through the GYM API. Our new goal was to train a neural network to work through this game as efficiently as possible.
 
-### If you would like to run this program as easily as possible, simply run the code from model1.py :)
+### If you would like to run this program as easily as possible, simply run the code from Model1.py :) Otherwise, you can use the agent, environment, and main classes separately.
 
 ## Agent:
 
@@ -21,6 +21,10 @@ The neural network implemented for our agent is a three-layer fully connected ne
 ## Load/Save
 
 Due to the computational power necessary to train our model, quite often we experienced GoogleColab breaking, our kernel dying, our computers going to sleep, or running out of space on our hard drives. For these reasons, it was extremely necessary to attempt to incorporate a save function where we could save the data as our model was training in the event one of the previously mentioned issues occurred.
+
+## Algorithmic Model
+
+There is also an algorithmic model that we implemented in order to compare our neural network. This version trains much faster, but it still requires 1000 episodes.
 
 ## Reflection
 
