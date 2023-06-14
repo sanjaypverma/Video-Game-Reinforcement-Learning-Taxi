@@ -14,18 +14,18 @@ In practically all reinforcement models, the agent can be thought of as the enti
 
 The environment class of our model was responsible for building the actual map through which the agent, or taxi, moved, as well as defining certain parameters such as the rewards for certain actions and the keys that correspond to certain inputs. The map shown above has 25 different positions where the taxi can be, 5 positions of the passenger (the four buildings in addition to being inside of the Taxi), and 4 dropoff locations, which combine for a discrete observation space of 500 states. However, each game has less than 500 reachable states that they will likely end up in as the dropoff location is always a different location than the initial location of the passenger. Each action the agent decides to perform is associated with either a positive or negative reward depending on if the Agent's action aids in finding the optimal path or not. The three reward options are as follows: -1 points per step unless another reward is rewarded, -10 points for the incorrect dropoff or pick up, and +20 for the correct drop off. An ideal reward for a human playing this game would be a positive reward in the range of [5,15], and a good reward for the neural network would be in range of [-100,0]. The game punishes “spamming” moves quite heavily as there are only 20 positive points that can be gained, so a single incorrect dropoff/pickup or moving around too much will result in a negative reward.
 
-## Neural Network
+## Neural Network:
 
 The neural network implemented for our agent is a three-layer fully connected network. The input layer takes in a 500-dimensional one-hot encoded vector that indicates one of the 500 possible states of the game, i.e. the location of the taxi and passenger on the map at a given time. This input layer is connected to a 32-node hidden layer which connects to another hidden layer of 16 nodes. Both of these layers are equipped with the ReLU activation function. The final layer is a dense layer with 6 nodes and a linear activation function. Simply put, the model is fed the current state of the environment (where the taxi-cab is located and where the passenger is located) and returns one of the 6 possible actions it is allowed to perform.
 
-## Load/Save
+## Load/Save:
 
 Due to the computational power necessary to train our model, quite often we experienced GoogleColab breaking, our kernel dying, our computers going to sleep, or running out of space on our hard drives. For these reasons, it was extremely necessary to attempt to incorporate a save function where we could save the data as our model was training in the event one of the previously mentioned issues occurred.
 
-## Algorithmic Model
+## Algorithmic Model:
 
 There is also an algorithmic model that we implemented in order to compare our neural network. This version trains much faster, but it still requires 1000 episodes.
 
-## Reflection
+## Reflection:
 
 Although our project did not go to plan, we were able to dive deeper into the world of AI and reinforcement learning, strengthening our programming skills and learning how to work new libraries such as TensorFlow. Neural networks are capable of learning virtually anything, but sometimes it is not the best way to approach a problem. As we have seen, we were able to train a computer and have the taxi move from space to space looking for the optimal path to pick up the person and drop them off, but our model was dumb and took an extremely long time, computational power, and storage to adequately train the game. As for ethical ramifications there are none. The point of this project was to have a computer play Taxi by finding the optimal path. This project was not intended to help the general public nor was it intended to help mankind. We strove to expand our programming knowledge and dive into the rising field of reinforcement learning. 
