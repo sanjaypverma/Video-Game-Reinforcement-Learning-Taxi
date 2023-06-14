@@ -57,7 +57,6 @@ class Agent:
 
     
     def saved(self,ccomplete_model):
-#             tf.keras.models.save_model(model,filepath=complete_model)
             self.model.save(complete_model)
             print('Full model saved successfully')
         
@@ -155,9 +154,9 @@ def main():
     
 
     # Hyperparameters
-    num_episodes = 150
+    num_episodes = 5
     max_steps = 1000
-    decay_rate = 0.0001
+    decay_rate = 0.001
 
     # Training
     for episode in range(num_episodes):
@@ -244,28 +243,6 @@ def main():
     time.sleep(10)
 
     # Watch trained agent
-#     state = env.reset()
-#     state = env.vectorize_state(state)
-#     done = False
-#     rewards = 0
-
-#     for s in range(max_steps):
-#         print("TRAINED AGENT")
-#         print("Step {}".format(s + 1))
-
-#         action = agent.act(state)
-#         next_state, reward, done, info = env.step(action)
-#         rewards += reward
-#         env.render()
-#         print(f"Score: {rewards}")
-#         state = env.vectorize_state(next_state)
-
-#         if done:
-#             break
-
-
-
-#####################
     state = env.reset()
     state = env.vectorize_state(state)
     done = False
@@ -286,54 +263,6 @@ def main():
             break
 
 
-#     def visualization(ss):
-#         #clear previous screenshot 
-#         plt.clf()
-#         env.render()
-
-#         state = positionPlay[ss]
-#         agent_position = np.unravel_index(state.argmax(), state.shape)
-#         plt.scatter(agent_position[1], agent_position[0], color='red', s=100)
-
-#         plt.title(f"Step: {ss + 1}")
-
-#     fig = plt.figure()
-#     game_animation = animation.FuncAnimation(fig, visualization, frame_num=len(positionPlay), interval=500, repeat=False)
-#     game_animation.save(save_animation, writer='ffmpeg')
-    
-#     plt.show()
-
-
-
-#     state = env.reset()
-#     done = False
-#     rewards = 0
-
-#     # this loop is for the animation so you can visually see
-#     # how the agent is performing.
-#     for s in range(max_steps):
-
-#         print(f"TRAINED AGENT")
-#         print("Step {}".format(s+1))
-
-#         # exploit a known action, we'll only used the
-#         # exploitation since the agent is aleady trained
-#         action = agent.act(state)
-#         # take the action in the environment
-#         new_state, reward, done, info = env.step(action)
-#         # update reward
-#         rewards += reward
-#         # update the screenshot of the environment
-#         env.render()
-
-#         print(f"score: {rewards}")
-#         state = new_state
-
-#         if done == True:
-#             break
-            
-#         if done:
-#             break
     env.close()
 
 

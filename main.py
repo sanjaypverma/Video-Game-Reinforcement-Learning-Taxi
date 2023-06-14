@@ -123,28 +123,6 @@ def main():
 
 
     # Watch trained agent
-#     state = env.reset()
-#     state = env.vectorize_state(state)
-#     done = False
-#     rewards = 0
-
-#     for s in range(max_steps):
-#         print("TRAINED AGENT")
-#         print("Step {}".format(s + 1))
-
-#         action = agent.act(state)
-#         next_state, reward, done, info = env.step(action)
-#         rewards += reward
-#         env.render()
-#         print(f"Score: {rewards}")
-#         state = env.vectorize_state(next_state)
-
-#         if done:
-#             break
-
-
-
-#####################
     state = env.reset()
     state = env.vectorize_state(state)
     done = False
