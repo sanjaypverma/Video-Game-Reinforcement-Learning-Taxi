@@ -18,11 +18,13 @@ class TaxiAgent:
         self.epsilon = epsilon
         self.decay_rate = decay_rate
 
-    def choose_action(self, state):
-        if random.uniform(0, 1) < self.epsilon:
-            return random.randint(0, self.action_size - 1)  # explore
+    def act(self, state):
+        if np.random.rand() <= self.epsilon:
+            # Explore
+            return random.randrange(self.action_size) 
         else:
-            return np.argmax(self.qtable[state, :])  # exploit
+            # Exploit
+            return np.argmax(self.qtable[state, :])
 
     def update_qtable(self, state, action, new_state, reward):
         self.qtable[state, action] = self.qtable[state, action] + self.learning_rate * (
@@ -68,7 +70,7 @@ def main():
 
         for s in range(max_steps):
             # choose action
-            action = agent.choose_action(state)
+            action = agent.act(state)
 
             # take action and observe reward
             new_state, reward, done, info = env.step(action)
