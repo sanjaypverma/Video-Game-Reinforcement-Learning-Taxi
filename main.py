@@ -16,6 +16,7 @@ from Agent import Agent
 from Environment import Environment 
 from Plotting import Plotting 
 from inputs import progress_model, complete_model, graph_data, save_animation
+import time
 
 
 
