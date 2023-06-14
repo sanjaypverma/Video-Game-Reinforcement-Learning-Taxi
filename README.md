@@ -14,7 +14,7 @@ In practically all reinforcement models, the agent can be thought of as the enti
 
 The environment class of our model was responsible for building the actual map through which the agent, or taxi, moved, as well as defining certain parameters such as the rewards for certain actions and the keys that correspond to certain inputs. The map shown above has 25 different positions where the taxi can be, 5 positions of the passenger (the four buildings in addition to being inside of the Taxi), and 4 dropoff locations, which combine for a discrete observation space of 500 states. However, each game has less than 500 reachable states that they will likely end up in as the dropoff location is always a different location than the initial location of the passenger. 
 
-## **Load/Sace**
+## **Load/Save**
 
 Due to the computational power necessary to train our model, quite often we experienced GoogleColab breaking, our kernel dying, our computers going to sleep, or running out of space on our hard drives. For these reasons, it was extremely necessary to attempt to incorporate a save function where we could save the data as our model was training in the event one of the previously mentioned issues occurred.
 
