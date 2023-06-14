@@ -35,9 +35,9 @@ def main():
     
 
     # Hyperparameters
-    num_episodes = 3
-    max_steps = 99
-    decay_rate = 0.005
+    num_episodes = 5
+    max_steps = 1000
+    decay_rate = 0.001
 
     # Training
     for episode in range(num_episodes):
@@ -121,6 +121,7 @@ def main():
     
     input("Press Enter to watch the trained agent...")
 
+    time.sleep(10)
 
     # Watch trained agent
     state = env.reset()
@@ -136,7 +137,7 @@ def main():
         next_state, reward, done, info = env.step(action)
         rewards += reward
         env.render()
-        #print(f"Score: {rewards}")
+        print(f"Score: {rewards}")
         state = env.vectorize_state(next_state)
 
         if done:
@@ -148,3 +149,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
